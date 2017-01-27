@@ -1,2 +1,2 @@
 # Crypto-Balances
-Python module for getting balance of varios crypto currency
+Python module for getting the balance of a various crypto currency.
