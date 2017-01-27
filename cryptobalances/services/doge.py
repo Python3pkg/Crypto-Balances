@@ -9,12 +9,9 @@ def pull_request(identifier):
 
     try:
         with urlopen(api_url.format(identifier=identifier), timeout=60) as f:
-            response = json.loads(f.read().decode('utf-8'))
-            if response['message'] is 'NOTOK':
-                return "{}. {}".format(response['message'], response['result'])
-            return response['result']
+            return json.loads(f.read().decode('utf-8'))['balance']
     except HTTPError as error:
-        return error.reason
+        return json.loads(error.read().decode('utf-8'))['error']
     except URLError as error:
         return error.reason
     except (ValueError, KeyError) as error:
