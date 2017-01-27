@@ -11,6 +11,9 @@ setup(
     packages=find_packages(),
     description='Python module for getting the balance of a various crypto currency',
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
-    url='https://github.com',
+    url='https://github.com/AleksandrLeonov/Crypto-Balances',
     platforms='Linux',
+    entry_points={
+        'console_scripts': ['main=cryptobalances.main:main'],
+    }
 )

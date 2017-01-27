@@ -1,4 +1,7 @@
 # Package build
 /dist/*
+/build/*
+/cryptobalances/*.pyc
 /cryptobalances.egg-info/*
-cryptobalances/__pycache__/*
+/cryptobalances/__pycache__/*
+/cryptobalances/services/__pycache__/*
