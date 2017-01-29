@@ -1,7 +1,7 @@
 import argparse
-from .services import chain_request
-from .services import eth_request
-from .services import doge_request
+from services import chain_request
+from services import eth_request
+from services import doge_request
 
 
 def main():
