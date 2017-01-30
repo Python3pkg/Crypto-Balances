@@ -18,5 +18,7 @@ def autodetect_currency(identifier):
         return 'GRT'
     elif re.match('^B[a-km-zA-HJ-NP-Z1-9]{33}$', identifier):
         return 'BLK'
+    elif re.match('^[nN][a-zA-Z0-9]{5}(-[a-zA-Z0-9]{4,6}){6}$', identifier):
+        return 'XEM'
     else:
         return None

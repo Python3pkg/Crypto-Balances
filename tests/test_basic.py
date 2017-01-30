@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import unittest
 from cryptobalances.checker import get_balance
-from cryptobalances.config_parser import read_config
+from cryptobalances.config import get_api_url
 from cryptobalances.validator import autodetect_currency
 
 
@@ -49,15 +49,27 @@ class TestGetBalance(unittest.TestCase):
         self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
         print('Function get_balance for BLK returns: {}'.format(result))
 
+    def test_xem(self):
+        result = get_balance('XEM', 'NCXIP5-JNP4GC-3JXXBB-U2UHF4-F4JYJ4-4DWFMN-EIMQ')
+        self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
+        print('Function get_balance for XEM returns: {}'.format(result))
 
-class TestConfigParser(unittest.TestCase):
-    def test_read_config(self):
-        self.assertIsNotNone(read_config(), 'Reading of config has been failed. The config has not been opened.')
+
+class TestConfig(unittest.TestCase):
+    def test_get_api_url(self):
+        currencies = ['BTC', 'LTC', 'ETH', 'DOGE', 'XCP', 'DASH', 'PPC', 'CPC', 'GRT', 'BLK', 'XEM']
+
+        for i in range(0, len(currencies) - 1):
+            with self.subTest(i=i):
+                api_url = get_api_url(currencies[i])
+                self.assertRegex(api_url,
+                                 '(^http[:]{1}[/]{2}(?!/).+$)|(^https[:]{1}[/]{2}(?!/).+$)',
+                                 'Function returns: {}'.format(api_url))
+                print('Function get_api_url for {} returns: {}'.format(currencies[i], api_url))
 
 
 class TestValidator(unittest.TestCase):
     def test_autodetect_eth(self):
-        # 1ebacb7844fdc322f805904fbf1962802db1537c
         self.assertEqual(autodetect_currency('0xfB6916095ca1df60bB79Ce92cE3Ea74c37c5d359'),
                          'ETH',
                          'Provided identifier has not been match according regexp.')
@@ -85,6 +97,11 @@ class TestValidator(unittest.TestCase):
     def test_autodetect_blk(self):
         self.assertEqual(autodetect_currency('B95qcCHpma5XZu4n6hP9pP5APiasCR16Ts'),
                          'BLK',
+                         'Provided identifier has not been match according regexp.')
+
+    def test_autodetect_xem(self):
+        self.assertEqual(autodetect_currency('NCXIP5-JNP4GC-3JXXBB-U2UHF4-F4JYJ4-4DWFMN-EIMQ'),
+                         'XEM',
                          'Provided identifier has not been match according regexp.')
 
 

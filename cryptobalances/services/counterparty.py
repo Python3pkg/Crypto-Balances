@@ -3,7 +3,7 @@ import json
 from urllib.request import urlopen
 from urllib.request import Request
 from urllib.error import URLError, HTTPError
-from cryptobalances.config_parser import get_api_url
+from cryptobalances.config import get_api_url
 
 
 def pull_request(currency, identifier):

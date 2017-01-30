@@ -5,6 +5,7 @@ from cryptobalances.services.ethereum import pull_request as eth_request
 from cryptobalances.services.doge import pull_request as doge_request
 from cryptobalances.services.counterparty import pull_request as xcp_request
 from cryptobalances.services.chain_cryptoid import pull_request as crypto_request
+from cryptobalances.services.nem import pull_request as xem_request
 
 
 def get_balance(currency, identifier):
@@ -34,3 +35,5 @@ def get_balance(currency, identifier):
         return crypto_request(currency, identifier)
     elif currency == 'BLK':
         return crypto_request(currency, identifier)
+    elif currency == 'XEM':
+        return xem_request(currency, identifier)
