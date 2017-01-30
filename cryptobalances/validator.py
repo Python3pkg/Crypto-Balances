@@ -8,5 +8,15 @@ def autodetect_currency(identifier):
         return 'LTC'
     elif re.match('^D[a-km-zA-HJ-NP-Z1-9]{33}$', identifier):
         return 'DOGE'
+    elif re.match('^X[a-km-zA-HJ-NP-Z1-9]{33}$', identifier):
+        return 'DASH'
+    elif re.match('^P[a-km-zA-HJ-NP-Z1-9]{33}$', identifier):
+        return 'PPC'
+    elif re.match('^C[a-km-zA-HJ-NP-Z1-9]{33}$', identifier):
+        return 'CPC'
+    elif re.match('^G[a-km-zA-HJ-NP-Z1-9]{33}$', identifier):
+        return 'GRT'
+    elif re.match('^B[a-km-zA-HJ-NP-Z1-9]{33}$', identifier):
+        return 'BLK'
     else:
         return None
