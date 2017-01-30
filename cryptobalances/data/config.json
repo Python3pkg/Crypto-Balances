@@ -3,6 +3,7 @@
     "BTC": "https://chain.so/api/v2/get_address_balance/{network}/{identifier}",
     "LTC": "https://chain.so/api/v2/get_address_balance/{network}/{identifier}",
     "ETH": "http://api.etherscan.io/api?module=account&action=balance&address={identifier}&tag=latest",
-    "DOGE": "http://dogechain.info/api/v1/address/balance/{identifier}"
+    "DOGE": "http://dogechain.info/api/v1/address/balance/{identifier}",
+    "XCP": "http://xcp.blockscan.com/api2?module=address&action=balance&btc_address={identifier}"
   }
 }

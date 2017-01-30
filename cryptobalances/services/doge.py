@@ -2,13 +2,12 @@
 import json
 from urllib.request import urlopen
 from urllib.error import URLError, HTTPError
+from cryptobalances.config_parser import get_api_url
 
 
-def pull_request(identifier):
-    api_url = 'http://dogechain.info/api/v1/address/balance/{identifier}'
-
+def pull_request(currency, identifier):
     try:
-        with urlopen(api_url.format(identifier=identifier), timeout=60) as f:
+        with urlopen(get_api_url(currency).format(identifier=identifier), timeout=60) as f:
             return json.loads(f.read().decode('utf-8'))['balance']
     except HTTPError as error:
         return json.loads(error.read().decode('utf-8'))['error']

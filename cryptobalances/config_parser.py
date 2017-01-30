@@ -1,9 +1,10 @@
+# -*- coding: utf-8 -*-
 import os.path
 import json
 
 
 def get_api_url(currency):
-    # Here, an exception can be thrown out of the fact that
+    # Here, an exception (TypeError) can be thrown out of the fact that
     # function read_config() returns None if file has not been open
     return read_config()['api_urls'][currency]
 

@@ -5,3 +5,4 @@
 /cryptobalances.egg-info/*
 /cryptobalances/__pycache__/*
 /cryptobalances/services/__pycache__/*
+/tests/__pycache__/*
