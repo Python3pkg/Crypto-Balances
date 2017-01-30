@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import re
 import unittest
 from cryptobalances.checker import get_balance
 from cryptobalances.config_parser import read_config
