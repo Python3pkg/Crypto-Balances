@@ -6,8 +6,9 @@ from cryptobalances.services.counterparty import pull_request as xcp_request
 from cryptobalances.services.chain_cryptoid import pull_request as crypto_request
 from cryptobalances.services.nem import pull_request as xem_request
 from cryptobalances.services.ripple import pull_request as xrp_request
+from cryptobalances.services.openassets import pull_request as oa_request
 
 
 __all__ = ["chain_request", "eth_request", "doge_request",
            'xcp_request', 'crypto_request', 'xem_request',
-           'xrp_request']
+           'xrp_request', 'oa_request']

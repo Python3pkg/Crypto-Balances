@@ -1,4 +1,5 @@
 import re
+from base58 import b58decode_check
 
 
 def autodetect_currency(identifier):
@@ -26,7 +27,10 @@ def autodetect_currency(identifier):
         # Nem Coin
         return 'XEM'
     elif re.match('^r[1-9A-HJ-NP-Za-km-z]{25,33}$', identifier):
-        # Ripple Coin: rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh
+        # Ripple Coin
         return 'XRP'
+    elif b58decode_check(identifier)[0] == 19:
+        # OpenAssets (Coinprism)
+        return 'OA'
     else:
         return None

@@ -1,12 +1,29 @@
 # -*- coding: utf-8 -*-
 from cryptobalances.validator import autodetect_currency
-from cryptobalances.services.chain_so import pull_request as chain_request
-from cryptobalances.services.ethereum import pull_request as eth_request
-from cryptobalances.services.doge import pull_request as doge_request
-from cryptobalances.services.counterparty import pull_request as xcp_request
-from cryptobalances.services.chain_cryptoid import pull_request as crypto_request
-from cryptobalances.services.nem import pull_request as xem_request
-from cryptobalances.services.ripple import pull_request as xrp_request
+from cryptobalances.services import chain_request
+from cryptobalances.services import eth_request
+from cryptobalances.services import doge_request
+from cryptobalances.services import xcp_request
+from cryptobalances.services import crypto_request
+from cryptobalances.services import xem_request
+from cryptobalances.services import xrp_request
+from cryptobalances.services import oa_request
+
+
+def get_request(currency):
+    try:
+        supported_currencies = {'BTC': chain_request, 'LTC': chain_request,
+                                'ETH': eth_request, 'DOGE': doge_request,
+                                'XCP': xcp_request, 'DASH': crypto_request,
+                                'PPC': crypto_request, 'CPC': crypto_request,
+                                'GRT': crypto_request, 'BLK': crypto_request,
+                                'XEM': xem_request, 'XRP': xrp_request,
+                                'OA': oa_request
+                                }
+        return supported_currencies[currency]
+    except KeyError as error:
+        print("Error: {}. Reason: Currency isn't supported.".format(error))
+        return None
 
 
 def get_balance(currency, identifier):
@@ -16,27 +33,4 @@ def get_balance(currency, identifier):
     if auto_currency:
         currency = auto_currency
 
-    if currency == 'BTC':
-        return chain_request(currency, identifier)
-    elif currency == 'LTC':
-        return chain_request(currency, identifier)
-    elif currency == 'ETH':
-        return eth_request(currency, identifier)
-    elif currency == 'DOGE':
-        return doge_request(currency, identifier)
-    elif currency == 'XCP':
-        return xcp_request(currency, identifier)
-    elif currency == 'DASH':
-        return crypto_request(currency, identifier)
-    elif currency == 'PPC':
-        return crypto_request(currency, identifier)
-    elif currency == 'CPC':
-        return crypto_request(currency, identifier)
-    elif currency == 'GRT':
-        return crypto_request(currency, identifier)
-    elif currency == 'BLK':
-        return crypto_request(currency, identifier)
-    elif currency == 'XEM':
-        return xem_request(currency, identifier)
-    elif currency == 'XRP':
-        return xrp_request(currency, identifier)
+    return get_request(currency)(currency, identifier)
