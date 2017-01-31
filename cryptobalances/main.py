@@ -6,6 +6,7 @@ from cryptobalances.services import doge_request
 from cryptobalances.services import xcp_request
 from cryptobalances.services import crypto_request
 from cryptobalances.services import xem_request
+from cryptobalances.services import xrp_request
 
 
 def main():
@@ -36,6 +37,8 @@ def main():
             print(crypto_request(args.currency, args.wallet))
         elif args.currency == 'XEM':
             print(xem_request(args.currency, args.wallet))
+        elif args.currency == 'XRP':
+            print(xrp_request(args.currency, args.wallet))
 
 
 if __name__ == "__main__":

@@ -12,6 +12,7 @@ def get_api_url(currency):
                 "CPC": "http://chainz.cryptoid.info/cpc/api.dws?q=getbalance&a={identifier}",
                 "GRT": "http://chainz.cryptoid.info/grt/api.dws?q=getbalance&a={identifier}",
                 "BLK": "http://chainz.cryptoid.info/blk/api.dws?q=getbalance&a={identifier}",
-                "XEM": "http://bigalice3.nem.ninja:7890/account/get?address={identifier}"
+                "XEM": "http://bigalice3.nem.ninja:7890/account/get?address={identifier}",
+                "XRP": "https://data.ripple.com/v2/accounts/{identifier}/balances"
                 }
     return api_urls[currency]

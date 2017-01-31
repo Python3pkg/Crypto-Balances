@@ -54,12 +54,17 @@ class TestGetBalance(unittest.TestCase):
         self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
         print('Function get_balance for XEM returns: {}'.format(result))
 
+    def test_xrp(self):
+        result = get_balance('XRP', 'rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh')
+        self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
+        print('Function get_balance for XRP returns: {}'.format(result))
+
 
 class TestConfig(unittest.TestCase):
     def test_get_api_url(self):
-        currencies = ['BTC', 'LTC', 'ETH', 'DOGE', 'XCP', 'DASH', 'PPC', 'CPC', 'GRT', 'BLK', 'XEM']
+        currencies = ['BTC', 'LTC', 'ETH', 'DOGE', 'XCP', 'DASH', 'PPC', 'CPC', 'GRT', 'BLK', 'XEM', 'XRP']
 
-        for i in range(0, len(currencies) - 1):
+        for i in range(0, len(currencies)):
             with self.subTest(i=i):
                 api_url = get_api_url(currencies[i])
                 self.assertRegex(api_url,
@@ -102,6 +107,11 @@ class TestValidator(unittest.TestCase):
     def test_autodetect_xem(self):
         self.assertEqual(autodetect_currency('NCXIP5-JNP4GC-3JXXBB-U2UHF4-F4JYJ4-4DWFMN-EIMQ'),
                          'XEM',
+                         'Provided identifier has not been match according regexp.')
+
+    def test_autodetect_xrp(self):
+        self.assertEqual(autodetect_currency('rHb9CJAWyB4rj91VRWn96DkukG4bwdtyTh'),
+                         'XRP',
                          'Provided identifier has not been match according regexp.')
 
 
