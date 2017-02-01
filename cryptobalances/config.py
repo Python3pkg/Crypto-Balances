@@ -15,6 +15,7 @@ def get_api_url(currency):
                 "XEM": "http://bigalice3.nem.ninja:7890/account/get?address={identifier}",
                 "XRP": "https://data.ripple.com/v2/accounts/{identifier}/balances",
                 "OA": "https://api.coinprism.com/v1/addresses/{identifier}",
-                "OMNI": "http://omnichest.info/requeststat.aspx?stat=balance&prop={property_id}&address={identifier}"
+                "OMNI": "http://omnichest.info/requeststat.aspx?stat=balance&prop={property_id}&address={identifier}",
+                "ZEC": "https://api.zcha.in/v1/mainnet/accounts/{identifier}"
                 }
     return api_urls[currency]

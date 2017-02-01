@@ -69,12 +69,17 @@ class TestGetBalance(unittest.TestCase):
         self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
         print('Function get_balance for OMNI returns: {}'.format(result))
 
+    def test_zcash(self):
+        result = get_balance('ZEC', 't1KHa9CJeCy3b9rUX2BhqkFJXSxSSrhM7LJ')
+        self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
+        print('Function get_balance for ZEC returns: {}'.format(result))
+
 
 class TestConfig(unittest.TestCase):
     def test_get_api_url(self):
         currencies = ['BTC', 'LTC', 'ETH', 'DOGE', 'XCP',
                       'DASH', 'PPC', 'CPC', 'GRT', 'BLK',
-                      'XEM', 'XRP', 'OA', 'OMNI']
+                      'XEM', 'XRP', 'OA', 'OMNI', 'ZEC']
 
         for i in range(0, len(currencies)):
             with self.subTest(i=i):
@@ -136,6 +141,12 @@ class TestValidator(unittest.TestCase):
     #     self.assertEqual(autodetect_currency('1CRne14GDzTQvKYv1uNuitocTNptF3qKCX'),
     #                      'OMNI',
     #                      'Provided identifier has not been match according regexp.')
+
+    def test_autodetect_zec(self):
+        self.assertEqual(autodetect_currency('t1KHa9CJeCy3b9rUX2BhqkFJXSxSSrhM7LJ'),
+                         'ZEC',
+                         'Provided identifier has not been match according regexp.')
+
 
 if __name__ == '__main__':
     unittest.main()

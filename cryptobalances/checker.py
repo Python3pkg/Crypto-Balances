@@ -9,6 +9,7 @@ from cryptobalances.services import xem_request
 from cryptobalances.services import xrp_request
 from cryptobalances.services import oa_request
 from cryptobalances.services import omni_request
+from cryptobalances.services import zcash_request
 
 
 def get_request(currency):
@@ -19,7 +20,8 @@ def get_request(currency):
                                 'PPC': crypto_request, 'CPC': crypto_request,
                                 'GRT': crypto_request, 'BLK': crypto_request,
                                 'XEM': xem_request, 'XRP': xrp_request,
-                                'OA': oa_request, 'OMNI': omni_request
+                                'OA': oa_request, 'OMNI': omni_request,
+                                'ZEC': zcash_request
                                 }
         return supported_currencies[currency]
     except KeyError as error:
