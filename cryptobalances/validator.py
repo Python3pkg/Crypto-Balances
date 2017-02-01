@@ -32,5 +32,8 @@ def autodetect_currency(identifier):
     elif b58decode_check(identifier)[0] == 19:
         # OpenAssets (Coinprism)
         return 'OA'
+    # This code was commented out because omni address has the same kind as BTC and XCP address
+    # elif re.match('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', identifier):
+    #     return 'OMNI'
     else:
         return None

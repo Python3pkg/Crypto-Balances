@@ -14,6 +14,7 @@ def get_api_url(currency):
                 "BLK": "http://chainz.cryptoid.info/blk/api.dws?q=getbalance&a={identifier}",
                 "XEM": "http://bigalice3.nem.ninja:7890/account/get?address={identifier}",
                 "XRP": "https://data.ripple.com/v2/accounts/{identifier}/balances",
-                "OA": "https://api.coinprism.com/v1/addresses/{identifier}"
+                "OA": "https://api.coinprism.com/v1/addresses/{identifier}",
+                "OMNI": "http://omnichest.info/requeststat.aspx?stat=balance&prop={property_id}&address={identifier}"
                 }
     return api_urls[currency]

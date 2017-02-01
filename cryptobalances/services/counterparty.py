@@ -7,6 +7,9 @@ from cryptobalances.config import get_api_url
 
 
 def pull_request(currency, identifier):
+    # TODO: I have noticed that time to time the following api is working very slow:
+    # TODO: http://xcp.blockscan.com/api2?module=address&action=balance&btc_address={identifier}
+    # TODO: I think we need to find any alternative api.
     try:
         request = Request(get_api_url(currency).format(identifier=identifier), method='GET')
 
