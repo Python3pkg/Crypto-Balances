@@ -19,3 +19,12 @@ def get_api_url(currency):
                 "ZEC": "https://api.zcha.in/v1/mainnet/accounts/{identifier}"
                 }
     return api_urls[currency]
+
+
+def get_supported_currencies():
+    currencies = ['BTC', 'LTC', 'ETH',
+                  'DOGE', 'XCP', 'DASH',
+                  'PPC', 'CPC', 'GRT',
+                  'BLK', 'XEM', 'XRP',
+                  'OA', 'OMNI', 'ZEC']
+    return currencies
