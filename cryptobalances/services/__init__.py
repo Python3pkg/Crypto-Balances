@@ -9,9 +9,10 @@ from cryptobalances.services.ripple import pull_request as xrp_request
 from cryptobalances.services.openassets import pull_request as oa_request
 from cryptobalances.services.omni import pull_request as omni_request
 from cryptobalances.services.zcash import pull_request as zcash_request
+from cryptobalances.services.nxt import pull_request as nxt_request
 
 
 __all__ = ["chain_request", "eth_request", "doge_request",
            'xcp_request', 'crypto_request', 'xem_request',
            'xrp_request', 'oa_request', 'omni_request',
-           'zcash_request']
+           'zcash_request', 'nxt_request']

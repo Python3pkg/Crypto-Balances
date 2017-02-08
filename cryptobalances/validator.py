@@ -33,9 +33,12 @@ def autodetect_currency(identifier):
         # This code was commented out because omni address has the same kind as BTC and XCP address
         # elif re.match('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', identifier):
         #     return 'OMNI'
+
         elif re.match('^t[1-9a-zA-Z]{34}$', identifier):
             # ZCash
             return 'ZEC'
+        elif re.match('^(NXT|nxt)(-[a-zA-Z0-9]{4,5}){4}$', identifier):
+            return 'NXT'
         elif b58decode_check(identifier)[0] == 19:
             # OpenAssets (Coinprism)
             return 'OA'

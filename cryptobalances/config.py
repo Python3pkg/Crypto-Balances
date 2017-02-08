@@ -16,7 +16,8 @@ def get_api_url(currency):
                 "XRP": "https://data.ripple.com/v2/accounts/{identifier}/balances",
                 "OA": "https://api.coinprism.com/v1/addresses/{identifier}",
                 "OMNI": "http://omnichest.info/requeststat.aspx?stat=balance&prop={property_id}&address={identifier}",
-                "ZEC": "https://api.zcha.in/v1/mainnet/accounts/{identifier}"
+                "ZEC": "https://api.zcha.in/v1/mainnet/accounts/{identifier}",
+                "NXT": "http://nxtpeers.com/api/peers.php"
                 }
     return api_urls[currency]
 
@@ -26,5 +27,6 @@ def get_supported_currencies():
                   'DOGE', 'XCP', 'DASH',
                   'PPC', 'CPC', 'GRT',
                   'BLK', 'XEM', 'XRP',
-                  'OA', 'OMNI', 'ZEC']
+                  'OA', 'OMNI', 'ZEC',
+                  'NXT']
     return currencies
