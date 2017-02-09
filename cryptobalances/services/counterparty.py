@@ -24,11 +24,11 @@ def pull_request(currency, identifier):
             if response['status'] == 'error':
                 return response['message']
             elif response['status'] == 'success':
-                # TODO: Maybe need return only XCP balance from data array from response
+                # TODO: We have the ability to return all the assets
                 data = dict()
                 for asset in response['data']:
                     data[asset['asset']] = asset['balance']
-                return data
+                return data['XCP']
     except HTTPError as error:
         return error.reason
     except URLError as error:
