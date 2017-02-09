@@ -17,7 +17,8 @@ def get_api_url(currency):
                 "OA": "https://api.coinprism.com/v1/addresses/{identifier}",
                 "OMNI": "http://omnichest.info/requeststat.aspx?stat=balance&prop={property_id}&address={identifier}",
                 "ZEC": "https://api.zcha.in/v1/mainnet/accounts/{identifier}",
-                "NXT": "http://nxtpeers.com/api/peers.php"
+                "NXT": "http://nxtpeers.com/api/peers.php",
+                "STEEM": "http://this.piston.rocks"
                 }
     return api_urls[currency]
 
@@ -28,5 +29,5 @@ def get_supported_currencies():
                   'PPC', 'CPC', 'GRT',
                   'BLK', 'XEM', 'XRP',
                   'OA', 'OMNI', 'ZEC',
-                  'NXT']
+                  'NXT', 'STEEM']
     return currencies

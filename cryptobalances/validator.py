@@ -30,20 +30,19 @@ def autodetect_currency(identifier):
         elif re.match('^r[1-9A-HJ-NP-Za-km-z]{25,33}$', identifier):
             # Ripple Coin
             return 'XRP'
-        # This code was commented out because omni address has the same kind as BTC and XCP address
-        # elif re.match('^[13][a-km-zA-HJ-NP-Z1-9]{25,34}$', identifier):
-        #     return 'OMNI'
-
         elif re.match('^t[1-9a-zA-Z]{34}$', identifier):
             # ZCash
             return 'ZEC'
         elif re.match('^(NXT|nxt)(-[a-zA-Z0-9]{4,5}){4}$', identifier):
             return 'NXT'
+        elif re.match('^[a-z0-9\-]+$', identifier):
+            return 'STEEM'
         elif b58decode_check(identifier)[0] == 19:
             # OpenAssets (Coinprism)
             return 'OA'
         else:
-            return None
+            # If we can't detect currency return the remaining variants
+            return ['BTC', 'XCP', 'OMNI']
     except ValueError as error:
         # Function: 'b58decode_check' may throw an exception - ValueError: Invalid checksum
         return None

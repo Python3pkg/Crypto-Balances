@@ -11,6 +11,7 @@ from cryptobalances.services import oa_request
 from cryptobalances.services import omni_request
 from cryptobalances.services import zcash_request
 from cryptobalances.services import nxt_request
+from cryptobalances.services import steem_request
 
 
 def get_request(currency):
@@ -22,7 +23,8 @@ def get_request(currency):
                                 'GRT': crypto_request, 'BLK': crypto_request,
                                 'XEM': xem_request, 'XRP': xrp_request,
                                 'OA': oa_request, 'OMNI': omni_request,
-                                'ZEC': zcash_request, 'NXT': nxt_request
+                                'ZEC': zcash_request, 'NXT': nxt_request,
+                                'STEEM': steem_request
                                 }
         return supported_currencies[currency]
     except KeyError as error:
@@ -34,7 +36,7 @@ def get_balance(currency, identifier):
 
     auto_currency = autodetect_currency(identifier)
 
-    if auto_currency:
+    if not isinstance(auto_currency, list):
         currency = auto_currency
 
     return get_request(currency)(currency, identifier)
