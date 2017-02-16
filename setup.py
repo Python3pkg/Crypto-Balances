@@ -1,11 +1,10 @@
-import cryptobalances
 from setuptools import setup, find_packages
 from os.path import join, dirname
 
 
 setup(
     name='cryptobalances',
-    version=cryptobalances.__version__,
+    version='0.9.1',
     author='Aliaksandr Leonau',
     author_email='leonov.aleksandr.1987@gmail.com',
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
