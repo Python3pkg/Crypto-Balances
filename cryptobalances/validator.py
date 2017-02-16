@@ -36,7 +36,7 @@ def autodetect_currency(identifier):
         elif re.match('^(NXT|nxt)(-[a-zA-Z0-9]{4,5}){4}$', identifier):
             return 'NXT'
         elif re.match('^[a-z0-9\-]+$', identifier):
-            return 'STEEM'
+            return ['STEEM', 'GOLOS']
         elif b58decode_check(identifier)[0] == 19:
             # OpenAssets (Coinprism)
             return 'OA'

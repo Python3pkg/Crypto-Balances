@@ -84,13 +84,18 @@ class TestGetBalance(unittest.TestCase):
         self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
         print('Function get_balance for STEEM returns: {}'.format(result))
 
+    def test_golos(self):
+        result = get_balance('GOLOS', 'alex78')
+        self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
+        print('Function get_balance for GOLOS returns: {}'.format(result))
+
 
 class TestConfig(unittest.TestCase):
     def test_get_api_url(self):
         currencies = ['BTC', 'LTC', 'ETH', 'DOGE', 'XCP',
                       'DASH', 'PPC', 'CPC', 'GRT', 'BLK',
                       'XEM', 'XRP', 'OA', 'OMNI', 'ZEC',
-                      'NXT', 'STEEM']
+                      'NXT']
 
         for i in range(0, len(currencies)):
             with self.subTest(i=i):
@@ -98,6 +103,15 @@ class TestConfig(unittest.TestCase):
                 self.assertRegex(api_url,
                                  '(^http[:]{1}[/]{2}(?!/).+$)|(^https[:]{1}[/]{2}(?!/).+$)',
                                  'Function returns: {}'.format(api_url))
+                print('Function get_api_url for {} returns: {}'.format(currencies[i], api_url))
+
+    def test_get_websocket(self):
+        currencies = ['STEEM', 'GOLOS']
+
+        for i in range(0, len(currencies)):
+            with self.subTest(i=i):
+                api_url = get_api_url(currencies[i])
+                self.assertRegex(api_url, '^wss[:]{1}[/]{2}(?!/).+$', 'Function returns: {}'.format(api_url))
                 print('Function get_api_url for {} returns: {}'.format(currencies[i], api_url))
 
 
@@ -157,10 +171,12 @@ class TestValidator(unittest.TestCase):
                          'NXT',
                          'Provided identifier has not been match according regexp.')
 
-    def test_autodetect_steem(self):
-        self.assertEqual(autodetect_currency('cryptofunk'),
-                         'STEEM',
-                         'Provided identifier has not been match according regexp.')
+    # def test_autodetect_steem_golos(self):
+    #     users = ['cryptofunk', 'alex78', 'catto000']
+    #     for i in range(0, len(users)):
+    #         with self.subTest(i=i):
+    #             self.assertIsInstance(autodetect_currency(i), list,
+    #                                   'Provided identifier has not been match according regexp.')
 
     def test_autodetect_omni(self):
         result = autodetect_currency('1CRne14GDzTQvKYv1uNuitocTNptF3qKCX')

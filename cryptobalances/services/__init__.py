@@ -11,9 +11,11 @@ from cryptobalances.services.omni import pull_request as omni_request
 from cryptobalances.services.zcash import pull_request as zcash_request
 from cryptobalances.services.nxt import pull_request as nxt_request
 from cryptobalances.services.steem import pull_request as steem_request
+from cryptobalances.services.golos import pull_request as golos_request
 
 
 __all__ = ["chain_request", "eth_request", "doge_request",
            'xcp_request', 'crypto_request', 'xem_request',
            'xrp_request', 'oa_request', 'omni_request',
-           'zcash_request', 'nxt_request', 'steem_request']
+           'zcash_request', 'nxt_request', 'steem_request',
+           'golos_request']

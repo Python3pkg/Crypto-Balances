@@ -19,6 +19,6 @@ setup(
     entry_points={
         'console_scripts': ['main=cryptobalances.main:main'],
     },
-    install_requires=['base58==0.2.4'],
+    install_requires=['base58==0.2.4', 'steem==0.4.3'],
     test_suite='tests'
 )

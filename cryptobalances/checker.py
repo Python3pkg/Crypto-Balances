@@ -12,6 +12,7 @@ from cryptobalances.services import omni_request
 from cryptobalances.services import zcash_request
 from cryptobalances.services import nxt_request
 from cryptobalances.services import steem_request
+from cryptobalances.services import golos_request
 
 
 def get_request(currency):
@@ -24,7 +25,7 @@ def get_request(currency):
                                 'XEM': xem_request, 'XRP': xrp_request,
                                 'OA': oa_request, 'OMNI': omni_request,
                                 'ZEC': zcash_request, 'NXT': nxt_request,
-                                'STEEM': steem_request
+                                'STEEM': steem_request, 'GOLOS': golos_request
                                 }
         return supported_currencies[currency]
     except KeyError as error:
