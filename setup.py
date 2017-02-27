@@ -4,7 +4,7 @@ from os.path import join, dirname
 
 setup(
     name='cryptobalances',
-    version='0.9.2',
+    version='0.9.3',
     author='Aliaksandr Leonau',
     author_email='leonov.aleksandr.1987@gmail.com',
     packages=find_packages(exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
