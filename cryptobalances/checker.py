@@ -13,6 +13,8 @@ from cryptobalances.services import zcash_request
 from cryptobalances.services import nxt_request
 from cryptobalances.services import steem_request
 from cryptobalances.services import golos_request
+# from cryptobalances.exchanges import poloniex_rates
+from cryptobalances.exchanges import shapeshift_rates
 
 
 def get_request(currency):
@@ -41,3 +43,16 @@ def get_balance(currency, identifier):
         currency = auto_currency
 
     return get_request(currency)(currency, identifier)
+
+
+def get_exchange():
+    # return [poloniex_rates, shapeshift_rates]
+    return [shapeshift_rates]
+
+
+def get_rate(currency_pair):
+    for i in get_exchange():
+        rate = i(currency_pair)
+        if rate:
+            return rate
+    return None

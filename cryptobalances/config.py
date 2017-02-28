@@ -19,9 +19,14 @@ def get_api_url(currency):
                 "ZEC": "https://api.zcha.in/v1/mainnet/accounts/{identifier}",
                 "NXT": "http://nxtpeers.com/api/peers.php",
                 "STEEM": "wss://node.steem.ws",
-                "GOLOS": "wss://ws.golos.io"
-                }
+                "GOLOS": "wss://ws.golos.io"}
     return api_urls[currency]
+
+
+def get_exchange_url(exchange):
+    api_url = {"poloniex": "https://poloniex.com/public?command=returnTicker",
+               "shapeshift": "https://shapeshift.io/rate/{currency_pair}"}
+    return api_url[exchange]
 
 
 def get_supported_currencies():
