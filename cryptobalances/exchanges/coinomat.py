@@ -7,7 +7,15 @@ from cryptobalances.config import get_exchange_url
 
 def get_rates(from_currency, to_currency):
     try:
-        with urlopen(get_exchange_url('shapeshift').format(
+        # BTC - Bitcoin, LTC - Litecoin, BTCD - BitcoinDark, PPC - Peercoin, NXT - NXT(NeXT), PERFECT - Perfect Money USD,
+        # EGOPAY - Ego Pay USD, OKPAY - OK Pay USD, VISAMASTER - withdrawal to Visa / Mastercard,
+        # WMV - Webmoney VND(Vietnam), VTC - VTC Pay VND(Vietnam), COINO - CoinoUSD NXT asset,
+        # BTCE - BTC'e USD code
+
+        # This service has problem with ssl cert:
+        # ssl.SSLError(1,'[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed (_ssl.c:600)')
+        # Temporary disabled this api.
+        with urlopen(get_exchange_url('coinomat').format(
                 from_currency=from_currency,
                 to_currency=to_currency),
                 timeout=60) as f:
@@ -15,7 +23,7 @@ def get_rates(from_currency, to_currency):
             if response.get('error'):
                 return None
             else:
-                return response.get('rate')
+                return response.get('xrate')
     except HTTPError as error:
         return error
     except URLError as error:

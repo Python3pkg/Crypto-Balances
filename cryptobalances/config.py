@@ -18,14 +18,16 @@ def get_api_url(currency):
                 "OMNI": "http://omnichest.info/requeststat.aspx?stat=balance&prop={property_id}&address={identifier}",
                 "ZEC": "https://api.zcha.in/v1/mainnet/accounts/{identifier}",
                 "NXT": "http://nxtpeers.com/api/peers.php",
-                "STEEM": "wss://node.steem.ws",
+                "STEEM": "wss://steemd.steemit.com",
                 "GOLOS": "wss://ws.golos.io"}
     return api_urls[currency]
 
 
 def get_exchange_url(exchange):
     api_url = {"poloniex": "https://poloniex.com/public?command=returnTicker",
-               "shapeshift": "https://shapeshift.io/rate/{currency_pair}"}
+               "shapeshift": "https://shapeshift.io/rate/{from_currency}_{to_currency}",
+               "changer": "https://www.changer.com/api/v2/rates/{from_currency}/{to_currency}",
+               "coinomat": "https://coinomat.com/api/v1/get_xrate.php?f={from_currency}&t={to_currency}"}
     return api_url[exchange]
 
 

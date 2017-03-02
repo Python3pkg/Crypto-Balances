@@ -5,4 +5,4 @@ from cryptobalances.validator import autodetect_currency
 
 
 __all__ = ["get_balance", "autodetect_currency", "get_rate"]
-__version__ = '0.9.3'
+__version__ = '0.9.4'
