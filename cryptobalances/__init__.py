@@ -6,4 +6,4 @@ from cryptobalances.config import get_supported_currencies
 
 
 __all__ = ["get_balance", "get_rate", "autodetect_currency", "get_supported_currencies"]
-__version__ = '0.9.4'
+__version__ = '0.9.5'
