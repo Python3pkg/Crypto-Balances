@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
 import json
 from urllib.request import urlopen
+from urllib.request import Request
 from urllib.error import URLError, HTTPError
 from cryptobalances.config import get_exchange_url
 
 
-def get_rates(from_currency, to_currency):
+def get_rates(from_currency, to_currency, useragent):
     try:
-        with urlopen(get_exchange_url('shapeshift').format(
-                from_currency=from_currency,
-                to_currency=to_currency),
-                timeout=60) as f:
+        request = Request(get_exchange_url('shapeshift').format(
+                          from_currency=from_currency,
+                          to_currency=to_currency), method='GET')
+        request.add_header('User-Agent', useragent)
+
+        with urlopen(request, timeout=60) as f:
             response = json.loads(f.read().decode('utf-8'))
             if response.get('error'):
                 return None

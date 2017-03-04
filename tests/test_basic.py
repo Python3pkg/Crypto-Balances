@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 from cryptobalances.checker import get_balance
+from cryptobalances.checker import get_rate
 from cryptobalances.config import get_api_url
 from cryptobalances.validator import autodetect_currency
+from cryptobalances.config import get_supported_currencies
 
 
 reg_exp = '(^0{1}$)|(^0{1}\.0{1}$)|(^[1-9]{1}[0-9]{0,100}$)|(^[1-9]{1}[0-9]{0,100}\.[0-9]{1,100}$)|(^[0-9]{1}\.[0-9]{1,100}$)'
@@ -10,7 +12,7 @@ reg_exp = '(^0{1}$)|(^0{1}\.0{1}$)|(^[1-9]{1}[0-9]{0,100}$)|(^[1-9]{1}[0-9]{0,10
 
 class TestGetBalance(unittest.TestCase):
     def test_btc(self):
-        result = get_balance('BTC', '1KpyvRt5EYumsCTe9SGQ4FeyM4mWcagpnM')
+        result = get_balance('BTC', '1CGz4Fxap6mB5DoShNwhLyi8PNvBKP3ZZh')
         self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
         print('Function get_balance for BTC returns: {}'.format(result))
 
@@ -30,17 +32,17 @@ class TestGetBalance(unittest.TestCase):
         print('Function get_balance for DOGE returns: {}'.format(result))
 
     def test_xcp(self):
-        result = get_balance('XCP', '16WhhnUUCZVvszFxsaCG3d6v77Qin1LErQ')
-        self.assertRegex(result['XCP'], reg_exp, 'Function returns: {}'.format(result))
-        print('Function get_balance for XCP returns: {}'.format(result['XCP']))
+        result = get_balance('XCP', '1Es1BQJvATSKiC1Hx6yXJbZ28BRMJZxn8a')
+        self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
+        print('Function get_balance for XCP returns: {}'.format(result))
 
     def test_dash(self):
-        result = get_balance('DASH', 'XfgNCeTJxBVHb9CCpn52QyfjfpBmPQUYdA')
+        result = get_balance('DASH', 'XtgcCrjT6QTiRPhSXHsdii7JRjMrEouyAR')
         self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
         print('Function get_balance for DASH returns: {}'.format(result))
 
     def test_ppc(self):
-        result = get_balance('PPC', 'PGVtF7DJ4KtndgdYZ472skrZQx3MDHNymt')
+        result = get_balance('PPC', 'PUYpBWY1vfKGpHU2G8G9yXmpsPUEggZSKU')
         self.assertRegex(result, reg_exp, 'Function returns: {}'.format(result))
         print('Function get_balance for PPC returns: {}'.format(result))
 
@@ -90,12 +92,47 @@ class TestGetBalance(unittest.TestCase):
         print('Function get_balance for GOLOS returns: {}'.format(result))
 
 
+class TestGetRate(unittest.TestCase):
+    def test_get_rate(self):
+        # currencies = get_supported_currencies('list')
+
+        currencies = ['BTC', 'LTC', 'ETH',
+                      'DOGE', 'XCP', 'DASH',
+                      'PPC', 'BLK', 'ZEC',
+                      'NXT', 'STEEM']
+
+        for i in range(0, len(currencies)):
+            if i != len(currencies) - 1:
+                for j in range(i + 1, len(currencies)):
+                    with self.subTest(i=j):
+                        result = get_rate(currencies[i], currencies[j])
+                        self.assertRegex(result, reg_exp, 'Function returns: {}-{} result: {}'.format(currencies[i],
+                                                                                                      currencies[j],
+                                                                                                      result))
+                        print('Function get_rate for '
+                              '{currency_from}_{currency_to} '
+                              'returns: {result}'.format(currency_from=currencies[i],
+                                                         currency_to=currencies[j],
+                                                         result=result))
+            if i != 0:
+                for j in range(0, i):
+                    with self.subTest(i=j):
+                        result = get_rate(currencies[i], currencies[j])
+                        self.assertRegex(result, reg_exp, 'Function returns: {}-{} result: {}'.format(currencies[i],
+                                                                                                      currencies[j],
+                                                                                                      result))
+                        print('Function get_rate for '
+                              '{currency_from}_{currency_to} '
+                              'returns: {result}'.format(currency_from=currencies[i],
+                                                         currency_to=currencies[j],
+                                                         result=result))
+
+
 class TestConfig(unittest.TestCase):
     def test_get_api_url(self):
-        currencies = ['BTC', 'LTC', 'ETH', 'DOGE', 'XCP',
-                      'DASH', 'PPC', 'CPC', 'GRT', 'BLK',
-                      'XEM', 'XRP', 'OA', 'OMNI', 'ZEC',
-                      'NXT']
+        currencies = get_supported_currencies('list')
+        currencies.remove('GOLOS')
+        currencies.remove('STEEM')
 
         for i in range(0, len(currencies)):
             with self.subTest(i=i):

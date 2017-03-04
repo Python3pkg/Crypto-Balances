@@ -3,7 +3,7 @@ from steemapi import SteemNodeRPC
 from cryptobalances.config import get_api_url
 
 
-def pull_request(currency, identifier):
+def pull_request(currency, identifier, useragent):
     try:
         client = SteemNodeRPC(get_api_url(currency))
         return client.get_account(identifier).get('balance').split(' ')[0]

@@ -31,11 +31,28 @@ def get_exchange_url(exchange):
     return api_url[exchange]
 
 
-def get_supported_currencies():
+def get_supported_currencies(data_type):
+    # parameter data_type - type of return value.
+    # Such as: list, tuple, dictionary
+
     currencies = ['BTC', 'LTC', 'ETH',
                   'DOGE', 'XCP', 'DASH',
                   'PPC', 'CPC', 'GRT',
                   'BLK', 'XEM', 'XRP',
                   'OA', 'OMNI', 'ZEC',
                   'NXT', 'STEEM', 'GOLOS']
-    return currencies
+    if data_type == 'list':
+        return currencies
+    elif data_type == 'tuple':
+        temp_list = list()
+        for i in zip(currencies, currencies):
+            temp_list.append(i)
+        return tuple(temp_list)
+    elif data_type == 'dict':
+        return dict(zip(currencies, currencies))
+
+
+def default_user_agent():
+    return "Mozilla/5.0 (Windows NT 6.1; WOW64) " \
+           "AppleWebKit/537.36 (KHTML, like Gecko) " \
+           "Chrome/55.0.2883.87 Safari/537.36"
