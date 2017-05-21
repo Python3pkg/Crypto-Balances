@@ -49,7 +49,7 @@ def get_supported_currencies(data_type):
             temp_list.append(i)
         return tuple(temp_list)
     elif data_type == 'dict':
-        return dict(zip(currencies, currencies))
+        return dict(list(zip(currencies, currencies)))
 
 
 def default_user_agent():

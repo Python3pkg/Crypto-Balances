@@ -34,7 +34,7 @@ def get_request(currency):
                                 }
         return supported_currencies[currency]
     except KeyError as error:
-        print("Error: {}. Reason: Currency isn't supported.".format(error))
+        print(("Error: {}. Reason: Currency isn't supported.".format(error)))
         return None
 
 

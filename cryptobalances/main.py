@@ -9,7 +9,7 @@ def main():
     parser.add_argument('wallet', nargs='?', type=str, help='Identifier of wallet')
     args = parser.parse_args()
     if (args.currency and args.wallet) is not None:
-        print(get_request(args.currency)(args.currency, args.wallet))
+        print((get_request(args.currency)(args.currency, args.wallet)))
 
 
 if __name__ == "__main__":

@@ -31,7 +31,7 @@ def get_rates(from_currency, to_currency, useragent):
             response = json.loads(f.read().decode('utf-8'))
             return response.get('rate')
     except HTTPError as error:
-        print("Error: {error} {reason}.".format(error=error.code, reason=error.reason))
+        print(("Error: {error} {reason}.".format(error=error.code, reason=error.reason)))
         return None
     except URLError as error:
         return error.reason
